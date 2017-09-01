@@ -18,7 +18,7 @@
             <div v-show="!oneItem.data.length" class="placeholder-item">请将需要展示的维度或指标拖拽到此处</div>
 
             <draggable v-model="oneItem.data" :options="dragOptions" :move="onMove"   @start="onStart" @end="onEnd">
-                 <transition-group  class="list-group" type="transition" tag="ul"  :id=oneItem.id>
+                 <transition-group  class="list-group" type="transition" tag="ul"  :id="oneItem.id">
                     <column-config v-for="(Item, i) in oneItem.data"
                                     :config="Item.name"
                                     v-bind:key="i"
@@ -136,7 +136,6 @@ export default {
             category: [],
             column: []
         },
-        ghostClass: 'ghost-transparent',
         editable:true,
         isCollide: false,
         isInto: false,
@@ -148,7 +147,7 @@ export default {
             },
             delay: 0,
             forceFallback: true,  // 调用mousemove，而不是直接用HTML5 DnD 方式，否则不能触发底层的mouseenter
-            ghostClass: 'ghost-transparent',
+            ghostClass: 'ghost',
             // delay: 500,
             chosenClass: 'chosen',
             animation: 100
@@ -225,12 +224,12 @@ export default {
         // console.log(arrAll);
     },
     draggerIn() {
-        this.dragOptions.ghostClass = 'ghost';
+        // this.dragOptions.ghostClass = 'ghost';
         console.log('in');
         this.isInto = true;
     },
     draggerOut() {
-        this.dragOptions.ghostClass = 'ghost-transparent';
+        // this.dragOptions.ghostClass = 'ghost-transparent';
         console.log('out');
         this.isInto = false;
         this.isCollide = false;
